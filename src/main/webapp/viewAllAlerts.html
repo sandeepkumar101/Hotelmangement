@@ -1,0 +1,28 @@
+<div class="col-md-12 col-part-left" style="max-height:480px; overflow-y:auto; -webkit-overflow-scrolling: touch;">
+       
+<!--    <ul class="menu">
+            <li ng-repeat="alert in alerts">
+                <a href="#">
+                    <i class="ion info"></i> {{alert.timeCreated | date:'d/M h:mm a'}}: {{alert.addText}}
+                </a>
+            </li>
+    </ul>-->
+
+<ul class="event-list">
+    <li ng-repeat="alert in alerts">
+            <time datetime="{{alert.timeCreated | date:'d/M h:mm a'}}">
+                    <span class="day">{{alert.timeCreated | date:'h:mm a'}}
+                        <span>{{alert.timeCreated | date:'d'}} {{alert.timeCreated | date:'MMM'}}, {{alert.timeCreated | date:'yyyy'}}</span>
+                    </span>
+<!--                    <span class="month">{{alert.timeCreated | date:'MMM'}}</span>-->
+<!--                    <span class="year">{{alert.timeCreated | date:'yyyy'}}</span>-->
+<!--                    <span class="time">{{alert.timeCreated | date:'d'}} {{alert.timeCreated | date:'MMM'}}, {{alert.timeCreated | date:'yyyy'}}</span>-->
+            </time>
+            <div class="info">
+                    <h2 class="title">{{alert.addText}}</h2>
+<!--                    <p class="desc"></p>-->
+            </div>
+    </li>
+</ul>
+
+</div>

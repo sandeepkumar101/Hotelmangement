@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+<!-- Custom Theme files -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link href="css/login.css" rel='stylesheet' type='text/css' />
+
+
+<!-- Google Fonts -->
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="container" >
+      <div id="fb-root"></div>
+
+		<div class="login_1" style="max-width: 400px; margin: 0 auto; ">
+       	    <ul class="various-grid accout-login2">
+			  <h4>Login</h4>
+			  
+				<!-- <label>Username</label>	 -->
+				<li>
+					<input type="text" class="text" placeholder="Email"  id="email" autocomplete="off"><a href="#" class="icon user"></a>
+				</li>
+				<!-- <label>Password</label>	 -->
+				<li>
+					<input type="password" placeholder="Password" id="password" autocomplete="off"><a href="#" class="icon lock"></a>
+				</li>
+				 <div id="error_message"></div>
+				<div class="but_3">
+				<div class="submit">
+					<input type="submit" id="login_button" value="Login">
+					<h5><a id="forgot"  href="forgot_password.html">Forgot Password</a> or <a href="signup.html">Sign Up</a></h5>
+				</div>	
+			</div> 
+			
+			</ul>
+			
+			<ul class="social_login">
+				<li>
+					<a href="#">
+						<i class="fb fb-icon"> </i>
+						<p id="fb">Login with Facebook</p>
+						<div class="clear"> 
+						</div>
+					</a>
+				</li>
+			</ul>
+		  </div>
+  </div>
+  <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/javarest.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/user.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '691431790983174', // App ID
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+          });
+
+          $('#fb').on('click', function () {
+
+             FB.login(function(response) {
+               console.log(response)
+                 if (response.authResponse) {
+
+                   javaRest.user.loginSocial(response.authResponse.accessToken, function (error) {
+                     if (error)
+                       console.log(error)
+                      else
+                       window.location = 'welcome.html'
+                   })
+                   console.log('Welcome!  Fetching your information.... ');
+                   FB.api('/me', function(response) {
+                     console.log('Good to see you, ' + response.name + '.');
+                   });
+                 } else {
+                   console.log('User cancelled login or did not fully authorize.');
+                 }
+               });
+
+          })
+
+        };
+        // Load the SDK Asynchronously
+        (function(d){
+           var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           ref.parentNode.insertBefore(js, ref);
+         }(document));
+
+
+      // Submit form on enter
+      $('input').live('keydown', function (event) {
+        if (event.keyCode === 13)
+          $('#login_button').click()
+      })
+
+      if (javaRest.user.is_logged_in())
+        window.location = 'welcome.html'
+      $('#login_button').on('click', function () {
+        javaRest.user.login($('#email').val(), $('#password').val(), function (error) {
+          if (!error)
+        	  
+        	  //javaRest.user.route(function (error) { 	  }
+        	  
+            window.location = 'welcome.html'
+            
+          else {
+            console.log(error)
+            $('#error_message').html('Email and/or password did not match a user account.').show()
+          }
+        })
+      })
+
+    })
+    </script>
+</body>
+</html>

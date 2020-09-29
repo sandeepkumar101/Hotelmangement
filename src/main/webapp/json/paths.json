@@ -1,0 +1,39 @@
+{"paths": {
+    "p1": {
+        "color": "green",
+        "weight": 8,
+        "latlngs": [
+            { "lat": 28.58, "lng": 77.33 },
+            { "lat": 28.53, "lng": 77.38 },
+            { "lat": 28.59, "lng": 77.04 }
+        ],
+        "message": "<h3>Route from Noida to Delhi</h3><p>Distance: 10km</p>"
+      }
+ },
+ "markers": {
+            "src": {
+                "lat": 28.58,
+                "lng": 77.33,
+                "icon": {
+                    "iconUrl": "icons/map-marker.svg",
+                    "iconSize": [24, 24],
+                    "iconAnchor": [12, 24],
+                    "popupAnchor": [0, 0],
+                    "shadowSize": [0, 0],
+                    "shadowAnchor": [0, 0]
+                }
+            },
+           "dest": {
+                "lat": 28.59,
+                "lng": 77.04,
+                "icon": {
+                    "iconUrl": "icons/map-marker.svg",
+                    "iconSize": [24, 24],
+                    "iconAnchor": [12, 18],
+                    "popupAnchor": [0, 0],
+                    "shadowSize": [0, 0],
+                    "shadowAnchor": [0, 0]
+                }
+            }
+}
+}

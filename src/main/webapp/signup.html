@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="bg-black">
+    <head>
+    <title></title>
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+       <!-- Custom Theme files -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+ <link href="css/admincss.css" rel="stylesheet" type="text/css" />
+<link href="css/login.css" rel='stylesheet' type='text/css' />
+
+ <!-- load angular and angular route -->
+      <script src="js/angular/angular.min.js"></script>
+      <script src="js/angular/angular-route.min.js"></script>
+      <script src="js/angular/angular-resource.min.js"></script>      
+      <script src="js/angular/angular-cookies.min.js"></script>
+      <script src="js/angular/angular-sanitize.min.js"></script>
+  
+      <script src="js/angular/app.js"></script>
+        <!-- jQuery 2.0.2 -->
+      <!--    <script src="js/jquery-1.11.1.min.js"></script> -->
+       <script src="js/jquery-1.8.2.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+      
+  
+    
+<!-- Google Fonts -->
+
+    </head>
+    <body class="bg-black" >
+ <div id="container">
+        <div class="form-box" id="login-box" style="margin: 0px auto 0 auto !important;">
+            <div class="header" style="background-color: #3C8DBC;">
+            <div class="margin text-center">
+               Sign up
+            </div>
+            </div>
+           
+                <div class="body bg-gray">
+                    <div class="form-group">
+                        <input type="text" id="email"  class="form-control" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control" placeholder="Password"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password2" class="form-control" placeholder="Retype password"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="firstName" class="form-control" placeholder="First Name"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="lastName" class="form-control" placeholder="Last Name"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="addressLine1" class="form-control" placeholder="House No."/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="addressLine2" class="form-control" placeholder="Street"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="city" class="form-control" placeholder="City"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="state" class="form-control" placeholder="State"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="pinCode" class="form-control" placeholder="Pin Code"/>
+                    </div>
+                    <div class="form-group">
+                        
+                        	<input type="checkbox"  name="agree" id="agree" /> <span style="font-size: 14px !important; vertical-align: text-top !important;">I agree to the <a href="#">terms of service.</a></span>
+                        
+                    </div>
+                    <div id="error_message"></div>
+                </div>
+                <div class="footer">                    
+
+                    <button type="submit" id="login_button" class="btn bg-aqua btn-block" >Sign up</button>
+                    
+                     <a id="fa" class="btn btn-block btn-social btn-facebook">
+                          <i  class="fa fa-facebook"></i> Sign up with Facebook
+                     </a>
+                </div>
+           
+        </div>
+        </div>
+
+      <script src="js/store.js"></script>
+    <script src="js/javarest.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/user.js"></script>
+        <script type="text/javascript">
+    $(document).ready(function () {
+
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '691431790983174', // App ID
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+          });
+
+          $('#fa').on('click', function () {
+
+             FB.login(function(response) {
+               console.log(response)
+                 if (response.authResponse) {
+
+                   javaRest.user.loginSocial(response.authResponse.accessToken, function (error) {
+                     if (error)
+                       console.log(error)
+                      else
+                       window.location = 'welcome.html'
+                   })
+                   console.log('Welcome!  Fetching your information.... ');
+                   FB.api('/me', function(response) {
+                     console.log('Good to see you, ' + response.name + '.');
+                   });
+                 } else {
+                   console.log('User has cancelled the login or did not fully authorize.');
+                 }
+               });
+
+          })
+        };
+        // Load the SDK Asynchronously
+        (function(d){
+           var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           ref.parentNode.insertBefore(js, ref);
+         }(document));
+
+      // Submit form on enter
+      $('input').live('keydown', function (event) {
+        if (event.keyCode === 13)
+          $('#login_button').click()
+      })
+
+      if (javaRest.user.is_logged_in())
+        window.location = 'welcome.html'
+      $('#login_button').on('click', function () {
+    	 
+        if (!$('#agree').is(':checked'))
+          return $('#error_message').html('You must agree to the terms of service.').show()
+		
+        javaRest.user.create($('#firstName').val(), $('#email').val(), $('#password').val(), $('#lastName').val(), $('#addressLine1').val(), $('#addressLine2').val(), $('#city').val(), $('#state').val(), $('#pinCode').val(), function (error)
+        {
+        	
+          if (!error)
+            window.location = 'welcome.html'
+          else {
+            console.log(error)
+            if (error.status == '409')
+              $('#error_message').html('Email already registered.').show()
+            else
+              $('#error_message').html('Please fix your email address/password.').show()
+          }
+        })
+      })
+
+    })
+    </script>
+
+    </body>
+</html>

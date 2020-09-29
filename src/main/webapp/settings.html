@@ -1,0 +1,157 @@
+
+                        <div class="col-md-12 col-part-left">
+                            <!-- general form elements -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Notifications</h3>
+                                    <div class="form-group pull-right" style="padding-right:10px !important;">
+                                        <div class="checkbox checkbox-info checkbox-circle">
+                                            <input id="checkboxEN" class="styled" type="checkbox" ng-model="enableNotification" ng-checked="enableNotification" ng-change="updateUserNotification('enableNotification')">
+                                            <label for="checkboxEN">
+                                                    Enable
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+                                
+                                <div class="box-body" style="text-align: left !important;" ng-disabled="!enableNotification">
+                                    	<div class="form-group">
+                                            <label>Pick Time</label>
+                                            <!--<button ng-click="pickTimePopUp()" ng-disabled="!enableNotification" class="btn btn-default form-control">{{pickTime}}</button>-->
+                                            <button href="#pickTimePopUp" data-toggle="modal" ng-disabled="!enableNotification" class="btn btn-default form-control">{{pickTime | date:"hh:mm a"}}</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Drop Time</label>
+                                            <!--<button ng-click="dropTimePopUp()" ng-disabled="!enableNotification" class="btn btn-default form-control">{{dropTime}}</button>-->
+                                            <button href="#dropTimePopUp" data-toggle="modal" ng-disabled="!enableNotification" class="btn btn-default form-control">{{dropTime}}</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Days</label>
+                                            <!--<button ng-click="daysPopUp()" ng-disabled="!enableNotification" class="btn btn-default form-control">{{daysSelection.join(", ")}}</button>-->
+                                            <button href="#daysPopUp" data-toggle="modal" ng-disabled="!enableNotification" class="btn btn-default form-control">{{daysSelection.join(", ")}}</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Types</label>
+                                            <!--<button ng-click="typesPopUp()" ng-disabled="!enableNotification" class="btn btn-default form-control">{{typesSelection.join(", ")}}</button>-->
+                                            <button href="#typesPopUp" data-toggle="modal" ng-disabled="!enableNotification" class="btn btn-default form-control">{{typesSelection.join(", ")}}</button>
+                                        </div>
+                                                                            
+                                        <div id="pickTimePopUp" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Pick Time</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <form role="form">
+                                                            <div class="form-group">
+                                                                <label>Start</label>
+                                                                <timepicker ng-model="selectPickTimeStart" show-meridian='showMeridian'/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>End</label>
+                                                                <timepicker ng-model="selectPickTimeEnd" show-meridian='showMeridian'/>
+                                                            </div>
+                                                            <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                                            <button type="submit" class="btn btn-primary" ng-click="updateUserNotification('pickTime')">Done</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                        </div>
+                                
+                                    <div id="dropTimePopUp" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Drop Time</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <form role="form">
+                                                        <div class="form-group">
+                                                            <label>Start</label>
+                                                            <timepicker ng-model="selectDropTimeStart" show-meridian='showMeridian'/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>End</label>
+                                                            <timepicker ng-model="selectDropTimeEnd" show-meridian='showMeridian'/>
+                                                        </div>
+                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                                        <button type="submit" class="btn btn-primary" ng-click="updateUserNotification('dropTime')">Done</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                        
+                                    <div id="daysPopUp" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Days</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <form role="form">
+                                                        <div class="form-group">
+
+                                                            <div class="checkbox checkbox-primary" ng-repeat="day in daysSelected">
+                                                                <input id="checkbox{{day.name}}" class="styled" type="checkbox" name="selectedDays[]" value="{{day.name}}" ng-model="day.selected">
+                                                                <label for="checkbox{{day.name}}">
+                                                                    {{day.name}}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                                        <button type="submit" class="btn btn-primary" ng-click="updateUserNotification('alertDays')">Done</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                        
+                                    <div id="typesPopUp" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Notification Types</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+
+                                                    <form role="form">
+                                                        <div class="form-group">
+
+                                                            <div class="checkbox checkbox-primary" ng-repeat="type in typesSelected">
+                                                                <input id="checkbox{{type.name}}" class="styled" type="checkbox" name="selectedTypes[]" value="{{type.name}}" ng-model="type.selected">
+                                                                <label for="checkbox{{type.name}}">
+                                                                    {{type.name}}
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                                                        <button type="submit" class="btn btn-primary" ng-click="updateUserNotification('alertTypesSel')">Done</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                    <div class="box-footer" style="text-align: center;">
+                                        <div class="alert alert-success" ng-show="showSuccessAlert">
+                                            <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">x</button> <strong></strong>{{successTextAlert}}
+                                        </div>
+                                    </div>    
+                                </div><!-- /.box -->
+                        </div><!-- ./col -->

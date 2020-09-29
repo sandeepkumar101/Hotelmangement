@@ -1,0 +1,360 @@
+ <!DOCTYPE html>
+    <html ng-app="dashboardApp">
+    <head>
+      
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+		<meta name="keywords" content="" />
+		
+		<!-- Custom Theme files -->	    
+		
+		<!-- bootstrap 3.0.2 -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        
+         <link href="../css/admincss.css" rel="stylesheet" type="text/css" />
+
+ <!-- load angular and angular route -->
+      <script src="../js/angular/angular.min.js"></script>
+      <script src="../js/angular/angular-route.min.js"></script>
+      <script src="../js/angular/angular-resource.min.js"></script>      
+      <script src="../js/angular/angular-cookies.min.js"></script>
+      <script src="../js/angular/angular-sanitize.min.js"></script>
+  
+      <script src="../js/angular/app.js"></script>
+		
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+		      
+
+	
+    
+ </head>
+    <body class="skin-blue">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <!-- <a href="index.html" class="logo">                
+                HotelManagement 
+            </a> -->
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-warning"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-people info"></i> <small style="font-size: 10px; !important; color:#3C8DBC ">10:20 AM: </small>Get ready, your bus is about to reach
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-warning danger"></i> <small style="font-size: 10px; !important; color:#3C8DBC ">10:05 AM: </small>Your bus is 5 km far
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users warning"></i> <small style="font-size: 10px; !important; color:#3C8DBC ">10:00 AM: </small>Bus halt at Railway Station
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-cart success"></i> <small style="font-size: 10px; !important; color:#3C8DBC ">09:45 AM: </small>Bus passed the Noida Ext.
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-person danger"></i> <small style="font-size: 10px; !important; color:#3C8DBC ">09:25 AM: </small>Bus started from to destination
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Messages: style can be found in dropdown.less Start here -->
+                        
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Design some buttons
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Create a nice theme
+                                                    <small class="pull-right">40%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">40% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Some task I need to do
+                                                    <small class="pull-right">60%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">60% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li><!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Make beautiful transitions
+                                                    <small class="pull-right">80%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">80% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <!-- Messages: style can be found in dropdown.less End here -->
+                        
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>Deepak Chauhan <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img src="../img/avatar5.png" class="img-circle" alt="User Image" />
+                                    <p>
+                                        Deepak Chauhan - Web Developer
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <!-- <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </li> -->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+                
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="../img/avatar5.png" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Hello, Deepak</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <!-- <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form> -->
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="index.html">
+                                <i class="fa fa-home"></i> <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages/widgets.html">
+                                <i class="fa fa-th"></i> <span>Profile</span>
+                            </a>
+                        </li>                        
+                     </ul>
+                   </section>
+              </aside>
+              
+               <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                   <!--  <h1>
+                        Home
+                        <small>Control panel</small>
+                    </h1> -->
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                        <!-- <li class="active">Dashboard</li> -->
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- general form elements -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Edit Profile</h3>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+                                <form role="form">
+                                    <div class="box-body">
+                                    	<div class="form-group">
+                                            <!-- <label for="exampleInputEmail1">Name</label> -->
+                                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <label for="exampleInputEmail1">Mobile</label> -->
+                                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Mobile">
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <label for="exampleInputEmail1">Email address</label> -->
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                        </div>
+                                        
+                                        <div class="form-group">
+	                                        <!-- <label>Date of Birth:</label> -->
+	                                        <div class="input-group">
+	                                            <div class="input-group-addon">
+	                                                <i class="fa fa-calendar"></i>
+	                                            </div>
+	                                            <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask placeholder="Date of Birth"/>
+	                                        </div><!-- /.input group -->
+                                    	</div><!-- /.form group -->
+                                        <div class="form-group">
+                                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">Photo</label>
+                                            <input type="file" id="exampleInputFile">
+                                            <!-- <p class="help-block">Example block-level help text here.</p> -->
+                                        </div>
+                                        <!-- <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Check me out
+                                            </label>
+                                        </div> -->
+                                    </div><!-- /.box-body -->
+
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                            </div><!-- /.box -->
+                        </div><!-- ./col -->
+                        
+                    </div><!-- /.row -->
+                                                                                                  
+           </section>
+         </aside>
+         
+         </div>
+       
+                    
+        
+        
+        <!-- jQuery 2.0.2 -->
+        <script src="../js/jquery-1.11.1.min.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        <script src="../js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        
+        <script src="../js/input-mask/jquery.inputmask.js" type="text/javascript"></script>
+        <script src="../js/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
+        <script src="../js/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
+        
+        <!-- Admin App -->
+        <script src="../js/admin/app.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                //Datemask dd/mm/yyyy
+                $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});    
+        
+            });
+            </script>
+    </body>
+
+
+</html>
